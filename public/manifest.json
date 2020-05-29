@@ -1,0 +1,18 @@
+{
+  "name": "Quiz Pancasila",
+  "short_name": "Quiz Pancasila",
+  "theme_color": "#8b71ff",
+  "background_color": "#f5b9ff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/index.html",
+    "icons": [
+        {
+            "src": "/img/icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+          }
+          
+        ]
+}

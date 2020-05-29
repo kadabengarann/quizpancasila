@@ -1,0 +1,327 @@
+
+:root{
+    --size:1400;
+}
+.windowContainer{
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+}
+.ovrLoad{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.507);
+    z-index: 9999;
+}
+.loader {
+    position: absolute;
+    left: 45%;
+    bottom: 45%;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    -webkit-animation: spin 2s ease infinite; /* Safari */
+    animation: spin 2s ease infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+#pre-start{
+    
+    width: 100vw;
+    height: 100%;
+    background-color: #fff;
+    position: fixed;
+    z-index: 90;
+    display: flex;
+    flex-direction: row;
+}
+
+.loginOvr{
+    display: none;
+}
+.activeLgn{
+    display: flex  !important;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.loginContainer{
+    display: flex;
+    flex-direction: row;
+    width: 39.2vw;
+    background-color: #c9c9c9;
+    filter:drop-shadow(3px 3px 4px rgb(0, 0, 0));
+}
+
+/* Loagin Input Section !!!!!! */
+
+
+
+/* Loagin Input Section Ends!!!!!! */
+.high-score{
+    display: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    z-index: 10020;
+    position: absolute;
+    background-color: rgb(76, 76, 76);
+    transition: all  0.5s ease;
+}
+.highScoreContainer{
+    text-align: center;
+    display: block;
+    border-radius: 20px;
+    background-color: #c9c9c9;
+    margin: 30px;
+    min-height: 100vh;
+}
+
+.highScoreContainer #scoreboard {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #scoreboard td, #scoreboard th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #scoreboard tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #scoreboard tr:hover {background-color: #ddd;}
+  
+  #scoreboard th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .highScoreContainer .close{
+    display: inline;
+    position: absolute;
+    top: 3vh;
+    right: 5vw;
+    cursor: pointer;
+    font-size: 2em;
+}
+.tutorial{
+    display: none;
+    border-radius: 20px;
+    background-color: #c9c9c9;
+    margin: 5vh auto 0 auto;
+    width: 460px;
+    padding: 40px;
+    height: fit-content;
+}
+.tutorial .close{
+    display: inline;
+    position: absolute;
+    top: 3vh;
+    right: 5vw;
+    cursor: pointer;
+    font-size: 2em;
+}
+.howto1{
+    width: 100%;
+}
+
+.judulStart{
+    flex: 5;
+    display: flex;
+    align-items: center;
+    border-radius:0 50px 50px 0;
+    justify-content: center;
+    background-color: #f8d3f3;
+    background-image: linear-gradient(250deg, #f8d3f3 0%, #C197D2 74%);
+}
+.notification{
+    display: none;
+    position: fixed;
+    top: 85vh;
+    z-index: 9999;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: aliceblue;
+    margin: auto;
+
+}
+.notification #reload{
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+
+.greeting{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.logout{
+    position: absolute;
+    top: 40px;
+    left: 5px;
+}
+.isiJudul{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius:0  50px 50px 0;
+    
+}
+.isiJudul img{
+    width: 15vw;
+    border-radius: 30px;
+}
+#bigTitle{
+    text-align: center;
+    color: #fff;
+    font-size: calc(4500vw/var(--size));
+}
+
+.buttonSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 2;
+    background-color: #ffffff;
+}
+#startBtn{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color:#ffffff;
+    font-size: calc(2200vw/var(--size));
+    padding: 10px;
+    border-radius: 10px;
+        border: 0px;
+        background-color: #ffffff;
+        background-image: linear-gradient(200deg, #fff 0%, #dfdfdf 99%);
+}
+#startBtn img{
+    height: calc(2200vw/var(--size));
+    margin-right: 7px;
+}
+
+#highScoreBtn{
+    margin-top: 30px;
+}
+.buttonSection #howtoBtn{
+    cursor: pointer;
+    border: #000 2px solid;
+    position: absolute;
+    right: 3px;
+    bottom: 2px;
+    font-size: 1em;
+    padding: 0 7px;
+    background-color:rgba(255, 255, 255, 0);
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50%;
+
+  
+
+}
+@media only screen and (max-width: 1500px) {
+    .loginContainer{
+        width: 580px;
+    }
+    .isiJudul img{
+        width: initial;
+        height: 250px;
+    }
+    #startBtn img{
+        height: 20px;
+    }
+    #startBtn{
+       font-size: 20px;
+    }
+    #bigTitle{
+       font-size:45px;
+    }
+}
+@media only screen and (max-width: 832px) {
+    
+
+    .tutorial{
+        height: 60vw;
+    }
+    .howto1{
+        height: 100%;
+    }
+
+
+}
+
+@media only screen and (max-width: 570px) {
+    .loginContainer{
+        width: 100vw;
+    }
+    .tutorial{
+        margin-top: 15vh;
+        height: fit-content;
+        width: 70vw;
+        padding: 10px;
+    }
+	#pre-start{
+        flex-direction: column;
+        
+    }
+    .judulStart{
+        flex: 2;
+        border-radius:0 0 30px 30px ;
+        background-image: linear-gradient(360deg, #f8d3f3 0%, #C197D2 74%);
+    }
+    .isiJudul img{
+        margin: 30px 20px;
+        height:  150px;
+    }
+    .isiJudul{
+        width:250px;
+    }
+    #bigTitle{
+        font-size: 1.8em;
+    }
+    .buttonSection{
+        flex: 1;
+    }
+    #startBtn {
+        margin-right: 7px;
+        position: relative;
+        bottom: 12vh;
+        font-size: 1.2em;
+        border-radius: 10px;
+        background-image: linear-gradient(180deg, #fff 0%, #dfdfdf 99%);
+    }
+}
