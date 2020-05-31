@@ -10,6 +10,7 @@
 	  <link rel="stylesheet" href="./css/gamestyle.css" media="screen">
     <link rel="stylesheet" href="./css/startstyle.css" media="screen">
     <link rel="stylesheet" href="./css/style.css" media="screen">
+    <link rel="stylesheet" href="./css/leaderboard.css" media="screen">
    
     <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
     
@@ -52,14 +53,41 @@
             
       </div>
     </div>
-    
-    
+    <div class="alertStart" style="display: none;">
+      <h3 class="header_alert">Alert!</h3>
+      <p>
+        Anda belum login, silahkan login agar progress dapat disimpan di leaderboard
+      </p>
+      <div class="responseAlert">
+      <button onclick="AlertLogin()">
+          Login
+        </button>
+        <button onclick="playGame()">
+          Coba 10 soal
+        </button>
+      </div>
+    </div>
+    <div class="profOvr" style="display: none;" onclick="hideProf()">
+      <div class="profContainer">
+        <div class="profHeader">
+          <p class="profName">---</p>
+          <img src="./img/user.png" alt="userPic" class="profPic">
+        </div>
+        <div class="profLogout">
+          <a  onclick="logout()">Logout</a>
+        </div>
+      </div>
+    </div>
       <div id="pre-start">
+        <div class="topBar_start">
+          <button class="login " onclick="login()">
+            Login
+           </button> 
+           <div style="display: none;" class="profImg" onclick="displayProf()">
+             <img src="./img/user.png" alt="?" class="img_profile">
+           </div>
+        </div>
         <div class="judulStart">
-          <h2 class="greeting" style="display: none;"><a onclick="displaylogout()">Hi, tot</a></h2>
-          <button style="display: none;" class="logout " onclick="logout()">
-            Logout
-           </button>  
           <div class="isiJudul">
             <img src="img/Jumbo.svg" alt="">
             <h1 id="bigTitle">Quiz Pancasila</h1>
@@ -80,15 +108,58 @@
         </div>
       </div>
       <div class="high-score">
+        
         <div class="highScoreContainer">
-          <h2>Scoreboard</h2>
+          
+          <div class="head">
+            <img src="./img/trophy.png" alt="?" class="header_icon">
+            <h2>Leaderboard</h2>
+          </div>
+          <div class="isi">
+            <div class="top3">
+              <div class="two item">
+                <div class="pos">
+                  2
+                </div>
+                <div class="pic" style="background-image: url(./img/user.png)"></div>
+                <div class="name">
+                  ?
+                </div>
+                <div class="score">
+                  -
+                </div>
+              </div>
+              <div class="one item">
+                <div class="pos">
+                  1
+                </div>
+                <div class="pic" style="background-image: url(&#39;./img/user.png&#39;)"></div>
+                <div class="name">
+                  ?
+                </div>
+                <div class="score">
+                  -
+                </div>
+              </div>
+              <div class="three item">
+                <div class="pos">
+                  3
+                </div>
+                <div class="pic" style="background-image: url(&#39;./img/user.png&#39;)"></div>
+                <div class="name">
+                  ?
+                </div>
+                <div class="score">
+                  -
+                </div>
+              </div>
+            </div>
+            <div class="list">
+            </div>
+          </div>
       <!-- Display our Scoreboard here -->
-      <table id="scoreboard">
-          <tr>
-              <th>Name</th>
-              <th>Score</th>
-          </tr>
-      </table>
+      
+      
       <p class="close">X</p>
         </div>
   
@@ -138,7 +209,7 @@
      https://firebase.google.com/docs/web/setup#available-libraries -->
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./jquery-3.5.1.min.js"></script>
     <!-- <script type="text/javascript" src="./questions.json"></script> -->
     <script src="prograssBarScore.js" async></script>
 

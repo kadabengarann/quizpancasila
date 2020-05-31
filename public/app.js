@@ -3,44 +3,35 @@ document.addEventListener("DOMContentLoaded", event =>{
     console.log(app); 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {      
-            if (user.isAnonymous) {
-                userName = "guest";
-                userID = user.uid;
-            } 
-            else{
-                if (user.displayName) {
+
                     console.log("there name");
                     console.log(user.displayName);
                     userName = user.displayName;
                     userID = user.uid;
-                }
-                else{
-                    console.log("null name");
-                    console.log(user.displayName);
-                    userName = tempName;
-                    userID = user.uid;
-                }
+                    userPhoto = user.photoURL || './img/user.png';
+
                 
-            }        
+                   
             localStorage.uName = userName;
             localStorage.idUser = userID;
+            localStorage.photoUser = userPhoto;
             console.log(userName);
             $('.loginOvr').removeClass("activeLgn");
             $('.loginOvr').hide();
-            $('.greeting').show();
-            $('.greeting').children().html('Hi, '+ localStorage.uName+'!')
+            $('.profImg').show();
+            $('.profImg').children('.img_profile').attr("src",localStorage.photoUser);
+            $('.profPic').attr("src",localStorage.photoUser);
+            loginBtn.hide();
+            $('.profName').html(localStorage.uName);
 
             console.log(user);
             console.log(user.uid);
 
             // logoutBtn.style.display = "inline";
           } else {
-            // No user is signed in.
-            $('.loginOvr').addClass("activeLgn");
-            $('.loginOvr').show();
-            displayLogin();
             console.log("KDD User lagi boy");
-
+            $('.profImg').hide();
+            loginBtn.show();
             $('.greeting').hide();
             
           }
@@ -52,16 +43,19 @@ document.addEventListener("DOMContentLoaded", event =>{
 let userName = '';
 let tempName;
 let userID = '';
+let userPhoto = '';
 
 
 if (localStorage.uName) {
     userName = localStorage.uName;
     userID = localStorage.idUser;
+    userPhoto = localStorage.photoUser;
     console.log("terdapat data terdahulu");
     
   } else {
     localStorage.uName = '';
     localStorage.idUser = '';
+    localStorage.photoUser = '';
   }
 // localStorage.setItem("uName", userName);
 console.log(localStorage.getItem("uName"));
@@ -70,10 +64,32 @@ console.log(userID);
 
 let loginSec = $('.loginSec');
 let anonymLogin = $('.guestNameInput');
-let loginBtn = document.querySelectorAll('.login');
+let loginBtn = $('.login');
 let logoutBtn = document.querySelector('.logout');
 
 
+function checkuserLog() {
+    console.log("cek cek");
+    
+        if (userName != '')
+            return true;
+        else{
+            $(".alertStart").show();
+            return false;
+        }
+}
+function displayProf() {
+    $('.profOvr').addClass('profOvrON');
+}
+function hideProf() {
+    $('.profOvr').removeClass('profOvrON');
+}
+function login() {
+    $('.loginOvr').addClass("activeLgn");
+    $('.loginOvr').show();
+    displayLogin();
+    console.log("KDD User lagi boy");
+}
 function emailSign() {
     let email = $('#email').val();
     let name = $('#name').val();
@@ -92,7 +108,8 @@ function emailSign() {
             let userKirim = {
                 name: name,
                 uid: user.uid,
-                email: user.email
+                email: user.email,
+                photo: './img/user.png'
             }
             writeUserData(userKirim);
             return result.user.updateProfile({
@@ -171,7 +188,8 @@ function googlelogin() {
                 let userKirim = {
                     name: user.displayName,
                     uid: user.uid,
-                    email: user.email
+                    email: user.email,
+                    photo: user.photoURL
                 }
                 writeUserData(userKirim)
                 
@@ -248,7 +266,7 @@ function saveScore(score) {
     // Make sure name has a value, if not send alert.
     var user = firebase.auth().currentUser;
     let tempScore;
-    if (user.isAnonymous) {
+    if (!user) {
         alert("You're using guest account, your progress will not be updated to leaderboard");
     }
     else{
@@ -262,7 +280,8 @@ function saveScore(score) {
                         if (tempScore < score) {
                         usersRef.update({
                             user: userName,
-                            score: score          
+                            score: score,
+                            photo: userPhoto         
                         });
                         console.log("Leaderboard successfully updated!");
                     }
@@ -272,7 +291,8 @@ function saveScore(score) {
             } else {
                 usersRef.set({
                     user: userName,
-                    score: score
+                    score: score,
+                    photo: userPhoto  
                 }) // create the document
                 console.log("Leaderboard successfully written!");
             };
@@ -285,17 +305,56 @@ function saveScore(score) {
 }
 
 function updateScores() {
+    $('.list').empty();
+    let count = 0;
+    let top1= $('.one');
+    let top2 =  $('.two');
+    let top3 = $('.three');
+    let mine = '';
+    let prof;
     const db = firebase.firestore();
-    // Clear current scores in our scoreboard
-    document.getElementById('scoreboard').innerHTML = '<tr><th>Name</th><th>Score</th></tr>';
     
     // Get the top 5 scores from our scoreboard
     db.collection("high-score").orderBy("score", "desc").get().then((snapshot) => {
         snapshot.forEach((doc) => {
-            document.getElementById('scoreboard').innerHTML += '<tr>' +
-            '<td>' + doc.data().user + '</td>' +
-            '<td>' + doc.data().score + '</td>' +
-            '</tr>';
+            if (doc.data().user == userName) {
+                mine = 'meeh';
+            }else
+                mine ='';
+            count = count+1;
+            prof =  doc.data().photo || './img/user.png';
+            if (count < 4) {
+                switch (count) {
+                    case 1:
+                        top1.children(".name").html( doc.data().user);
+                        top1.children(".pic").css("background-image","url("+prof+")")
+                        top1.children(".score").html( doc.data().score);
+                        break;
+                    case 2:
+                        top2.children(".name").html( doc.data().user);
+                        top2.children(".pic").css("background-image","url("+prof+")")
+                        top2.children(".score").html( doc.data().score);
+                        break;
+                    case 3:
+                        top3.children(".name").html( doc.data().user);
+                        top3.children(".pic").css("background-image","url("+prof+")")
+                        top3.children(".score").html( doc.data().score);
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                document.querySelector('.list').innerHTML += "<div class=\"item " +mine+ "\"><div class=\"pos\">"+count+
+                "</div><div class=\"pic\" style=\" background-image:url("+ prof+  ")\"></div><div class=\"name\">" +
+                 doc.data().user  +
+                "</div><div class=\"score\">"+
+                doc.data().score +
+                " </div></div>";
+                
+            }
+           
+            console.log(count);``
+            
         })
     })
 }
@@ -317,13 +376,14 @@ function displaySignup(){
         $('.loader').hide();
       }); 
 }
-
+function AlertLogin() {
+    $('.alertStart').hide();
+    login();
+}
 function alertGuest(){
-    var user = firebase.auth().currentUser;
-
-    if (user.isAnonymous) {
+    if (userName = '') {
         alert("You're using guest mode, \n Jadi Cuma boleh sampai 10 soal aja ya");
-    }
-
-    return user.isAnonymous;
+        return true;
+    }else
+        return false;
 }

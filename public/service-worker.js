@@ -1,4 +1,4 @@
-const CACHE_NAME = "PancasilaPWA- 1652122";
+const CACHE_NAME = "PancasilaPWA- 0260708";
 var urlsToCache = [
   "/",
   "/manifest.json",
@@ -6,16 +6,19 @@ var urlsToCache = [
   "/login.html",
   "/signup.html",
   "/css/gamestyle.css",
+  "/css/leaderboard.css",
   "/css/startstyle.css",
   "/css/style.css",
   "/game.js",
   "/app.js",
+  "/jquery-3.5.1.min.js",
   "/prograssBarScore.js",
   "/Progressbar.js",
   "/img/icon.png",
   "/img/Jumbo.svg",
   "/img/coins.png",
   "/img/piala.png",
+  "/img/user.png",
   "/img/play buton.svg",
   "/img/icon-google.png",
   "/audio/nextStage.mp3",

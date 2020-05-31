@@ -7,7 +7,7 @@ var overlay = $('.overlay');
 var PancaGame = PancaGame || {};
 
 PancaGame.Game = function()
-{
+{	
 	//--Variables
 	var correctAnswer;
 
@@ -87,7 +87,7 @@ PancaGame.Game = function()
 			$('.main-body').css("opacity", "0");
 			exitQuiz();
 			startSound('restartSound', false);
-		console.log(" / Exit");
+		// console.log(" / Exit");
 		restart.hide();
 		exit.hide();
 		});
@@ -110,7 +110,7 @@ PancaGame.Game = function()
 
 	}
 	
-	// starting point / next question
+	// Here's our starting point, it's also the place we will come back to when we want to ask the next question
 	function nextQuestion() {
 		// Starting the question number off at 0, as arrays start at 0
 		if (Qnum != (finalStage*perStage)) {
@@ -122,7 +122,7 @@ PancaGame.Game = function()
 		
 		let tesVar = Qnum +1;
 		tesVar = tesVar/2;
-		console.log(tesVar);
+		// console.log(tesVar);
 		
 		progress2 = ((Qnum)/(finalStage*perStage))*10000;
 		progHeight =((Qnum)/(finalStage*perStage));
@@ -132,7 +132,7 @@ PancaGame.Game = function()
 		}
 	//	prgressBar.animate(progress);
 	if (Qnum == 0) {
-		console.log("NO PertamaAMMAMAMMMA");
+		// console.log("NO PertamaAMMAMAMMMA");
 		
 		SmpProgress.jQMeter({
 			goal:'10000',
@@ -177,12 +177,14 @@ PancaGame.Game = function()
 		});
 	}
 		
-		console.log("qnum is " + Qnum)
-		console.log("paket is " + stageNum)
+		// console.log("qnum is " + Qnum)
+		// console.log("paket is " + stageNum)
 		//console.log(SoalArray);
 		var total = perStage * finalStage;
 		
 		if(Qnum < total) {
+		
+			// Ask the question and pass the question number onto the function
 			askQuestion(stageNum, Qnum);
 
 
@@ -207,7 +209,7 @@ PancaGame.Game = function()
 				
 	}
 	
-	//  outputs the question
+	// This outputs the question so the user can answer notice the stage which gives us the correct question from the array
 	function askQuestion(stage,nosoal) {
 		
 		// Take the question from the array and output it into $('.question')
@@ -219,7 +221,7 @@ PancaGame.Game = function()
 		
 		randomSoalIndex = getRandomNumber(0,SoalArray.length-1);
 		S_index = SoalArray[randomSoalIndex];
-		console.log("index soal generated "+ S_index);
+		// console.log("index soal generated "+ S_index);
 
 		questionBox.html(questions.games[stage].questions[S_index].question);
 		
@@ -252,7 +254,7 @@ PancaGame.Game = function()
 		correctAnswer = questions.games[stage].questions[S_index].correct;
 		SoalArray.splice(randomSoalIndex, 1);
 		
-		console.log("JAWABAN : "+ correctAnswer);
+		// console.log("JAWABAN : "+ correctAnswer);
 		
 		// Remove spaces and change to lowercase
 		correctAnswer = correctAnswer.replace(/ /g,'').toLowerCase();
@@ -283,7 +285,7 @@ PancaGame.Game = function()
 						$(this).css({"opacity": "0","cursor": "default"});
 						$(this).off('click');
 						$(this).click(function() {
-							console.log("gak bisa bro");
+							// console.log("gak bisa bro");
 						});
 						
 						// Add one to the count!
@@ -299,11 +301,11 @@ PancaGame.Game = function()
 		
 	}
 	
-	// etects if correct
+	// This function detects if they answered correctly
 	function answerQuestion() {
 		
 		
-		// Take data 
+		// Take the data attribute form the answer the user clicked and remove spaces and change to lowercase
 		var UserAnswer = $(this).data('answer');
 		let pilihanHilang = 0;
 
@@ -319,7 +321,7 @@ PancaGame.Game = function()
 					// Hide it
 					
 					$(this).css("opacity","0");				
-					console.log("hilang");
+					// console.log("hilang");
 					
 					// Add one to the count!
 					pilihanHilang = pilihanHilang + 1;
@@ -332,7 +334,7 @@ PancaGame.Game = function()
 		
 		//  if answer match the correct answer in the variable?
 		if (UserAnswer == correctAnswer) {
-			console.log("Jawaban Benar");
+			// console.log("Jawaban Benar");
 			
 			// next question
 			$(this).css("background-color","#55d455");
@@ -347,7 +349,7 @@ PancaGame.Game = function()
 		else {
 			
 			
-			console.log("salah");
+			// console.log("salah");
 			
 			$(this).css("opacity", "100");
 			$(this).css("background-color","#ff002b");
@@ -461,25 +463,25 @@ PancaGame.Game = function()
 	function nextStage() {
 		stageNum = stageNum + 1;
 		soalPerStage = questions.games[stageNum].questions.length;
-		console.log("Jumlah soal per stage untuk stage "+stageNum+" =" +soalPerStage);
+		// console.log("Jumlah soal per stage untuk stage "+stageNum+" =" +soalPerStage);
 		//hapus array nya dulu
 		SoalArray = [...emptyArray]
-		console.log("arr hapus ");
-		console.log(SoalArray);
+		// console.log("arr hapus ");
+		// console.log(SoalArray);
 		
 		//isi array sesuai jumlah soal
 		for(let i = 0; i < soalPerStage; i++){
 			SoalArray[i] = i;
 		}
-		console.log("arr isi "+SoalArray);
+		// console.log("arr isi "+SoalArray);
 		//bakup array ke bakupan
 		B_soalArray = [...SoalArray];
-		console.log("arr bakup "+B_soalArray);
+		// console.log("arr bakup "+B_soalArray);
 
 		if (Qnum < 99){
 			stopSound('bSound');
 			
-			console.log("next stage");
+			// console.log("next stage");
 			overlay.children(".mesej").children("#stageNumber").html(""+(stageNum + 1));
 			overlay.children(".mesej").children("#stageText").html("Stage " + (stageNum + 1));
 			overlay.show();
@@ -499,7 +501,7 @@ PancaGame.Game = function()
 			
 		}else{
 			nextQuestion();
-			console.log("Masih Awal bro");
+			// console.log("Masih Awal bro");
 		}
 		
 	}
@@ -529,7 +531,7 @@ PancaGame.Game = function()
 		freePass.prop('disabled', false);
 		freePass.css({"opacity": "100","cursor": "pointer"});
 		// Show the button
-		console.log("restart");
+		// console.log("restart");
 		
 	}
 	
@@ -562,7 +564,7 @@ startSound = function(id, loop) {
 	soundHandle = document.getElementById(id);
 	if(loop){
 		soundHandle.setAttribute('loop', loop);
-		console.log("LOOOOOOOOPPPPPPP");
+		// console.log("LOOOOOOOOPPPPPPP");
 		
 	}
 	soundHandle.play();
@@ -576,11 +578,12 @@ stopSound = function(id) {
 
 
 // ON DOC READY
+
 $(function()
 {	
 	
 	let lebar = $(".badanSoal").width();
-		console.log(lebar);
+		// console.log(lebar);
 		$(".topBar").css("width", lebar-20+"px");
 
 
@@ -588,15 +591,17 @@ $(function()
 	//Start Button clicked
 	$("#startBtn").click(function() {
 		startSound('clickSound', false);
-		console.log("Start");
-				
-		barProgIsi.css("display", "none");
-		$("#pre-start").fadeOut('1000', function() {
-			// startSound('bSound', true);
-			$(".main-body").fadeIn('1000');
-			new PancaGame.Game();	
-
-		});
+		// console.log("Start");
+		if (checkuserLog()) {
+            barProgIsi.css("display", "none");
+            $("#pre-start").fadeOut('1000', function() {
+                // startSound('bSound', true);
+                $(".main-body").fadeIn('1000');
+                new PancaGame.Game();	
+    
+            }); 
+        }		
+		
 	});
 
 	$("#howtoBtn").click(function() {
@@ -612,7 +617,7 @@ $(function()
 
 	});
 	overlay.children(".tutorial").children(".close").click(function() {
-		console.log("keluar tutorial");
+		// console.log("keluar tutorial");
 		
 		setTimeout(function(){
 			overlay.css({"opacity": "0"});
@@ -631,7 +636,7 @@ $(function()
 		}, 200);
 		
 		$(".highScoreContainer").children(".close").click(function() {
-			console.log("keluar high score");
+			// console.log("keluar high score");
 			$(".high-score").hide();
 			setTimeout(function(){
 			}, 200);
@@ -644,7 +649,17 @@ $(function()
 		$(".topBar").css("width", lebar-20+"px");
 	}
 
-
+    
 	   
 });
 
+function playGame() {
+    $(".alertStart").hide();
+    barProgIsi.css("display", "none");
+    $("#pre-start").fadeOut('1000', function() {
+        // startSound('bSound', true);
+        $(".main-body").fadeIn('1000');
+        new PancaGame.Game();	
+
+    }); 
+}

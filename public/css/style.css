@@ -334,9 +334,8 @@ input:focus {
 .otherMethod{
   margin-top: 20px;
   display: flex;
+  flex-direction: column;
   width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
 .btn-guest, .btn-google{
@@ -350,7 +349,6 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc((100% - 10px) / 2);
   padding: calc(1000vw/var(--size)) 0 ;
   border-radius: 3px;
   border: 1px solid #e6e6e6;

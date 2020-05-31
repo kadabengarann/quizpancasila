@@ -65,7 +65,7 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
+    z-index: 110;
 }
 
 .loginContainer{
@@ -81,47 +81,6 @@
 
 
 /* Loagin Input Section Ends!!!!!! */
-.high-score{
-    display: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    z-index: 10020;
-    position: absolute;
-    background-color: rgb(76, 76, 76);
-    transition: all  0.5s ease;
-}
-.highScoreContainer{
-    text-align: center;
-    display: block;
-    border-radius: 20px;
-    background-color: #c9c9c9;
-    margin: 30px;
-    min-height: 100vh;
-}
-
-.highScoreContainer #scoreboard {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  #scoreboard td, #scoreboard th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #scoreboard tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #scoreboard tr:hover {background-color: #ddd;}
-  
-  #scoreboard th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-  }
 
   .highScoreContainer .close{
     display: inline;
@@ -184,11 +143,109 @@
     top: 5px;
     left: 5px;
 }
-
-.logout{
+.topBar_start{
+    display: flex;
+    flex-direction: row-reverse;
     position: absolute;
+    width: 100%;
+    padding: 15px;
+    right: 0;
+}
+.profImg{
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid #737373;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img_profile{
+    border: 3px solid #737373;
+    width: 60px;
+    background-color: rgb(59, 59, 59);
+    width: 50px;
+    border-radius: 50%;
+}
+.logout{
+    /* position: absolute;
     top: 40px;
-    left: 5px;
+    left: 5px; */
+}
+
+.alertStart{
+    position: fixed;
+    top: 40%;
+    left: 30%;
+    z-index: 100;
+    max-width: 50vw;
+    background-color: #ffffff;
+    box-shadow:6px 5px 14px 3px grey;
+    padding: 20px;
+    border-radius: 15px;
+}
+.alertStart h3{
+    color: #ff0000;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: #C197D2 solid 3px;
+    margin-bottom: 10px;
+}
+.alertStart p{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.alertStart button{
+    background-color: #f7f7f7;
+    border: solid 2px #c9a0d8;
+    border-radius: 5px;
+    padding: 5px 30px;
+}
+.responseAlert{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.profOvrON{
+    display: flex  !important;
+    flex-direction: row-reverse;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 1000;
+}
+.profContainer{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 25vw;
+    height: fit-content;
+    box-shadow:6px 5px 14px 3px grey;
+
+}
+.profHeader{
+    font-size: 1.3em;
+    display: flex;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #c9a0d8;
+}
+.profName{
+    max-width: 80%;
+    overflow: hidden;
+    height: 31px;
+}
+.profPic{
+    border: solid 2px #737373 ;
+    border-radius: 50%;
+    width: 50px;
+}
+.profLogout{
+    padding: 10px 0;
+    color: #c9a0d8;
 }
 .isiJudul{
     width: fit-content;
@@ -254,6 +311,9 @@
 
 }
 @media only screen and (max-width: 1500px) {
+    .alertStart{
+        left: 25%;
+    }
     .loginContainer{
         width: 580px;
     }
@@ -272,7 +332,9 @@
     }
 }
 @media only screen and (max-width: 832px) {
-    
+    .profContainer{
+        width: 40vw;
+    }
 
     .tutorial{
         height: 60vw;
@@ -285,6 +347,14 @@
 }
 
 @media only screen and (max-width: 570px) {
+    .alertStart{
+        left: 0.5%;
+        width: 90vw;
+        max-width: 100vw;
+    }
+    .profContainer{
+        width: 70vw;
+    }
     .loginContainer{
         width: 100vw;
     }
